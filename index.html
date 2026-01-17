@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Tafsir ibn Kathir</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Thai Tafsir ibn Kathir</h1>
+            <p>อรรถาธิบายอัลกุรอานโดยอิบนุ กะษีร</p>
+        </header>
+
+        <main class="main-content">
+            <div class="selection-panel">
+                <div class="form-group">
+                    <label for="surah-select">เลือกซูเราะห์:</label>
+                    <select id="surah-select" class="form-control">
+                        <option value="">-- เลือกซูเราะห์ --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ayah-select">เลือกอายะห์:</label>
+                    <select id="ayah-select" class="form-control" disabled>
+                        <option value="">-- เลือกอายะห์ --</option>
+                    </select>
+                </div>
+
+                <button id="load-btn" class="btn btn-primary" disabled>โหลดอรรถาธิบาย</button>
+            </div>
+
+            <div class="loading-indicator" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>กำลังโหลดข้อมูล...</p>
+            </div>
+
+            <div class="tafsir-content" id="tafsir-container" style="display: none;">
+                <div class="verse-header">
+                    <h2 id="verse-title"></h2>
+                    <p id="verse-arabic" class="arabic-text"></p>
+                </div>
+
+                <div class="tafsir-section">
+                    <h3>อรรถาธิบายภาษาอังกฤษ</h3>
+                    <div id="english-tafsir" class="tafsir-text"></div>
+                </div>
+
+                <div class="tafsir-section">
+                    <h3>แปลภาษาไทย</h3>
+                    <div id="thai-translation" class="tafsir-text thai-text">
+                        <p>กำลังแปล...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-message" id="error-message" style="display: none;">
+                <p>เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>ข้อมูลจาก Tafsir API และ Google Translate</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
