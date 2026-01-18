@@ -26,9 +26,15 @@ body {
     margin-bottom: 30px;
     background: linear-gradient(135deg, rgba(8, 45, 36, 0.95) 0%, rgba(5, 30, 23, 0.95) 100%);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 0;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    border: 1px solid #32cd32;
+    border: none;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header h1 {
