@@ -134,7 +134,7 @@ class ThaiTafsirApp {
         this.surahs.forEach(surah => {
             const option = document.createElement('option');
             option.value = surah.number;
-            option.textContent = `${surah.number}. ${surah.name} (${surah.thai})`;
+            option.textContent = `${surah.number}. ${surah.name}`;
             surahSelect.appendChild(option);
         });
     }
