@@ -128,6 +128,7 @@ class ThaiTafsirApp {
         this.setupEventListeners();
         const mainContent = document.querySelector('.main-content');
         if (mainContent) mainContent.classList.add('no-tafsir');
+        this.setupTabs();
     }
     
     populateSurahDropdown() {
@@ -255,6 +256,7 @@ class ThaiTafsirApp {
         container.style.display = 'block';
         const mainContent = document.querySelector('.main-content');
         if (mainContent) mainContent.classList.remove('no-tafsir');
+        this.activateTab('thai');
     }
     
     getArabicVersePlaceholder(surah, ayah) {
@@ -381,6 +383,33 @@ class ThaiTafsirApp {
         document.getElementById('error-message').style.display = 'block';
         const mainContent = document.querySelector('.main-content');
         if (mainContent) mainContent.classList.add('no-tafsir');
+    }
+    
+    setupTabs() {
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-target');
+                this.activateTab(target === 'thai-tab' ? 'thai' : 'english');
+            });
+        });
+        this.activateTab('thai');
+    }
+    
+    activateTab(tab) {
+        const thaiPanel = document.getElementById('thai-tab');
+        const engPanel = document.getElementById('english-tab');
+        const buttons = document.querySelectorAll('.tab-btn');
+        
+        if (tab === 'thai') {
+            thaiPanel.classList.add('active');
+            engPanel.classList.remove('active');
+            buttons.forEach(b => b.classList.toggle('active', b.getAttribute('data-target') === 'thai-tab'));
+        } else {
+            engPanel.classList.add('active');
+            thaiPanel.classList.remove('active');
+            buttons.forEach(b => b.classList.toggle('active', b.getAttribute('data-target') === 'english-tab'));
+        }
     }
     
     hideError() {

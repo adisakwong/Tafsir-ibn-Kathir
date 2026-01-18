@@ -47,16 +47,19 @@
                     <p id="verse-arabic" class="arabic-text"></p>
                 </div>
 
-                <div class="tafsir-section">
-                    <h3>อรรถาธิบายภาษาอังกฤษ</h3>
-                    <div id="english-tafsir" class="tafsir-text"></div>
+                <div class="tab-bar">
+                    <button class="tab-btn active" data-target="thai-tab">อรรถาธิบายไทย</button>
+                    <button class="tab-btn" data-target="english-tab">อรรถาธิบายอังกฤษ</button>
                 </div>
-
-                <div class="tafsir-section">
-                    <h3>แปลภาษาไทย</h3>
+                
+                <div id="thai-tab" class="tab-panel active">
                     <div id="thai-translation" class="tafsir-text thai-text">
                         <p>กำลังแปล...</p>
                     </div>
+                </div>
+                
+                <div id="english-tab" class="tab-panel">
+                    <div id="english-tafsir" class="tafsir-text"></div>
                 </div>
             </div>
 
