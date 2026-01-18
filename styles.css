@@ -284,4 +284,20 @@ body {
     .arabic-text {
         font-size: 1.3rem;
     }
+    
+    .footer {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .footer p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+    
+    .footer p:nth-child(n+3) {
+        display: none;
+    }
 }
