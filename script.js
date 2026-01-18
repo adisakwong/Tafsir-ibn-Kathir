@@ -134,7 +134,7 @@ class ThaiTafsirApp {
         this.surahs.forEach(surah => {
             const option = document.createElement('option');
             option.value = surah.number;
-            option.textContent = `${surah.number}. ${surah.name} (${surah.thai}) - ${surah.ayahs} อายะห์`;
+            option.textContent = `${surah.number}. ${surah.name} (${surah.thai})`;
             surahSelect.appendChild(option);
         });
     }
@@ -200,7 +200,8 @@ class ThaiTafsirApp {
         
         try {
             const tafsirData = await this.fetchTafsir(this.currentSurah, this.currentAyah);
-            this.displayTafsir(tafsirData);
+            const arabicText = await this.fetchArabicVerse(this.currentSurah, this.currentAyah);
+            this.displayTafsir(tafsirData, arabicText);
             await this.translateToThai(tafsirData.text);
         } catch (error) {
             console.error('Error loading tafsir:', error);
@@ -222,7 +223,21 @@ class ThaiTafsirApp {
         return await response.json();
     }
     
-    displayTafsir(data) {
+    async fetchArabicVerse(surah, ayah) {
+        const apiUrl = `https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/chapters/${surah}.json`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const json = await response.json();
+        const index = ayah - 1;
+        if (!json.verses || !json.verses[index] || !json.verses[index].text) {
+            throw new Error('Arabic verse not found');
+        }
+        return json.verses[index].text;
+    }
+    
+    displayTafsir(data, arabicText) {
         const container = document.getElementById('tafsir-container');
         const verseTitle = document.getElementById('verse-title');
         const verseArabic = document.getElementById('verse-arabic');
@@ -231,7 +246,7 @@ class ThaiTafsirApp {
         const surah = this.surahs.find(s => s.number === data.surah);
         
         verseTitle.textContent = `ซูเราะห์ ${surah.thai} (${surah.name}) อายะห์ที่ ${data.ayah}`;
-        verseArabic.textContent = this.getArabicVersePlaceholder(data.surah, data.ayah);
+        verseArabic.textContent = arabicText;
         
         englishTafsir.innerHTML = this.formatTafsirText(data.text);
         
