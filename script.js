@@ -126,6 +126,8 @@ class ThaiTafsirApp {
     initializeApp() {
         this.populateSurahDropdown();
         this.setupEventListeners();
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) mainContent.classList.add('no-tafsir');
     }
     
     populateSurahDropdown() {
@@ -251,6 +253,8 @@ class ThaiTafsirApp {
         englishTafsir.innerHTML = this.formatTafsirText(data.text);
         
         container.style.display = 'block';
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) mainContent.classList.remove('no-tafsir');
     }
     
     getArabicVersePlaceholder(surah, ayah) {
@@ -365,6 +369,8 @@ class ThaiTafsirApp {
     showLoading() {
         document.getElementById('loading').style.display = 'block';
         document.getElementById('tafsir-container').style.display = 'none';
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) mainContent.classList.add('no-tafsir');
     }
     
     hideLoading() {
@@ -373,6 +379,8 @@ class ThaiTafsirApp {
     
     showError() {
         document.getElementById('error-message').style.display = 'block';
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) mainContent.classList.add('no-tafsir');
     }
     
     hideError() {
